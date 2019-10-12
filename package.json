@@ -1,0 +1,16 @@
+{
+  "name": "elife-fb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rajeshkannan R <rrajeshkannanbca@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cote": "^0.20.1",
+    "elife-utils": "rajeshkannanramakrishnan/elife-utils",
+    "request": "^2.88.0"
+  }
+}
