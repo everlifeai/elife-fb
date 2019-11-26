@@ -249,7 +249,8 @@ function pollMsg () {
  */
 function pollMsgIntervel(){
   if(pollReq.error ||
-      (pollMsg.res && !(''+pollReq.res.statusCode).match(/^2\d\d$/))) {
+    (pollMsg.res && !(''+pollReq.res.statusCode).match(/^2\d\d$/))
+      && pollReq.res.statusCode+''!=='502') {
     setTimeout(() => {
       pollMsg()
     }, pollReq.intervel[pollReq.reqTimeNdx] * 1000)
