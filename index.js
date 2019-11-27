@@ -348,6 +348,8 @@ function registerWithCommMgr() {
       mstype: 'msg',
       mshelp: [ 
           {cmd: '/fbwebhookinfo', txt: 'Get facebook messenger webhook config details' },
+          {cmd: '/use_for_support <channel-name>', txt: 'Get the messenger message in a specific channel, like: telegram,qwert'},
+          {cmd: '/tell <chat-id> <reply-msg>', txt: 'Reply to the messenger channel user.'}
           
       ],
   }, (err) => {
