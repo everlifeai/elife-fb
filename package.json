@@ -8,12 +8,6 @@
   },
   "author": "Rajeshkannan R <rrajeshkannanbca@gmail.com>",
   "license": "ISC",
-  "dependencies": {
-    "cote": "^0.20.1",
-    "elife-utils": "github:rajeshkannanramakrishnan/elife-utils",
-    "request": "^2.88.0"
-  },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/everlifeai/elife-fb.git"
