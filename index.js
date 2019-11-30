@@ -91,10 +91,11 @@ const botChannel = new cote.Responder({
  * auth challange for everlife service gateway
  */
 function loadAuthChallenge () {
-  console.log('Loading auth challenge')
+  console.log('Loading FB Channel auth challenge...')
   ssbClient.send({ type: 'everlife-service-auth' }, (err, res) => {
     if (err) u.showErr(err)
     else {
+      console.log('Loaded!')
       authChallenge = res
       pollMsg()
     }
@@ -182,7 +183,7 @@ botChannel.on('msg', (req, cb) => {
       sendReply('Invalid Channel. Please try any one of this channel \ntelegram \nqwert', req)
     } else {
       levelDBClient.send({ type: 'put', key: channel, val: val }, (err) => {
-        if(err) console.log(err)
+        if(err) u.showErr(err)
       })
       channelHandler = new cote.Requester({
         name: 'Facebook Messenger channel',
@@ -202,8 +203,8 @@ botChannel.on('msg', (req, cb) => {
  */
 
 function pollMsg () {
-  if (!cfg.EVERLIFE_FB_SERVICE_GATEWAY) console.log('Please add everlife service gateway..')
-  else if (!authChallenge) console.log('Auth challenge is missing for everlife service gateway.')
+  if (!cfg.EVERLIFE_FB_SERVICE_GATEWAY) u.showErr('Please add EVERLIFE_FB_SERVICE_GATEWAY key in your configuration')
+  else if (!authChallenge) u.showErr('Auth challenge missing for FB Channel')
   else {
     let options = {
       'auth': {
@@ -229,7 +230,7 @@ function pollMsg () {
             }
           }
         } catch (e) {
-          console.error(e)
+          u.showErr(err)
         }
       }
       pollMsgIntervel()
@@ -301,10 +302,9 @@ function sendMsgToFBMessenger (cfg, userID, msg) {
     method: 'POST',
     json: messageData
   }, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      console.log('Message sent successfully.')
-    } else {
-      console.error('Send message failed.')
+    if (error || response.statusCode != 200) {
+      u.showErr('FB Channel Send message failed.')
+      u.showErr(error)
     }
   })
 }
