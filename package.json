@@ -1,6 +1,6 @@
 {
   "name": "elife-fb",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "The Facebook Channel (used for support chatbot)",
   "main": "index.js",
   "scripts": {
